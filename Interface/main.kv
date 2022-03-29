@@ -1,0 +1,223 @@
+
+WindowManager:
+    
+    MainScreen:
+    
+    SecondScreen:
+
+<MainScreen>:
+    
+    name: 'main'
+
+    connect_btn: connect_btn
+    
+    ip_text: ip_text
+
+    orientation: 'vertical'
+    
+    MDBoxLayout:
+        
+        orientation:'vertical'
+        
+        MDToolbar:
+            
+            title: 'Relógio do Jordan'
+            
+            md_bg_color: 0.6, 0.2, 0.2, 1
+            
+            specific_text_color: 1, 1, 1, 1
+        
+        MDBottomNavigation:
+            
+            specific_text_color: 1, 1, 1, 1
+            
+            panel_color: 0.6, 0.2, 0.2, 1
+
+            
+            MDBottomNavigationItem:
+                
+                name: 'screen'
+                
+                text: 'Entrar'
+                
+                icon: 'lock'
+
+                Button:
+                    
+                    id: connect_btn
+                    
+                    text: "Conectar"
+                    
+                    font_size: 32
+                    
+                    size: 100, 50
+                    
+                    size_hint: (1, None)
+                    
+                    height: 70
+                    
+                    on_press:
+                        
+                        app.connect_to_server()
+                        
+                        root.manager.current = 'second'
+
+                Label:
+                    
+                    text: "Server IP"
+                    
+                    font_size: 42
+                    
+                    color: 0.92, 0.45, 0, 1
+                    
+                    pos_hint: {'right': 1, 'top': 1.1,}
+
+                TextInput:
+                    
+                    id: ip_text
+                    
+                    size_hint: (1, None)
+                    
+                    text: ''
+
+                    hint_text: 'Ip do Servidor'
+                    
+                    height: 50
+                    
+                    font_size: 36
+                    
+                    pos_hint: {'right': 1, 'top': 0.56,}
+
+
+<SecondScreen>:
+    
+    name: 'second'
+    
+    MDBoxLayout:
+        
+        orientation:'vertical'
+        
+        MDToolbar:
+            
+            title: 'Relógio do Jordan'
+            
+            md_bg_color: 0.6, 0.2, 0.2, 1
+            
+            specific_text_color: 1, 1, 1, 1
+        
+        MDBottomNavigation:
+            
+            specific_text_color: 1, 1, 1, 1
+            
+            panel_color: 0.6, 0.2, 0.2, 1
+            
+            MDBottomNavigationItem:
+                
+                name: 'screen 1'
+                
+                text: 'Relógio'
+                
+                icon: 'clock'
+
+                
+                MDLabel:
+                    
+		            id: time
+		            
+		            text: ""
+		            
+		            font_size: 60
+		            
+		            text_color: 0, 1, 0, 1
+		            
+                    halign: "center"
+
+            
+            MDBottomNavigationItem:
+                
+                name: 'screen 2'
+                
+                text: 'Alarmes'
+                
+                icon: 'alarm'
+
+                
+                MDLabel:
+                    
+		            id: alarm_time
+		            
+		            text: ''
+		            
+		            font_size: 60
+		            
+		            text_color: 0, 1, 0, 1
+		            
+                    halign: "center"
+                
+                MDTextField:
+                    
+                    id: add_time
+                    
+                    hint_text: "Adicionar Alarme / Exemplo: 12:30:00"
+                    
+                    current_hint_text_color: 0, 0, 0, 1
+                    
+                    required: True
+                    
+                    text: ''
+                    
+                    mode: "rectangle"
+                    
+                    text_color: 0, 0, 0, 1
+                    
+                    helper_text_mode: "on_error"
+                    
+                    helper_text: "Escreva Só Números"
+                    
+                    max_text_length: 8
+                    
+                    input_filter: 'int'
+                    
+                    pos_hint: {'right': 1, 'top': 0.2,}
+                
+                Button:
+                    
+                    text: 'Adicionar'
+                    
+                    size_hint: (None, None)
+                    
+                    height: 30
+                    
+                    pos_hint: {'right': 1,'top': 1,}
+                    
+                    on_press:
+                        
+                        app.submit()
+                
+                Button:
+                    
+                    text: 'Limpar'
+                    
+                    size_hint: (None, None)
+                    
+                    height: 30
+                    
+                    pos_hint: {'right': 0.85,'top': 1,}
+                    
+                    on_press:
+                        
+                        app.clear()
+                
+                Button:
+                    
+                    text: 'Parar'
+                    
+                    size_hint: (None, None)
+                    
+                    height: 30
+                    
+                    pos_hint: {'right': 0.70,'top': 1,}
+                    
+                    on_press:
+                        
+                        app.stop()
